@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ESCEP ENGLISH CLUB — Programme gratuit d'apprentissage de l'anglais à Niamey : reading sessions, débats, formation en ligne et en présentiel.">
+    <title>ESCEP ENGLISH CLUB</title>
+    <!-- Polices : Fraunces pour les titres (caractère éditorial), Poppins pour le corps -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600 ;9..144,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+         :root {
+            /* --- Palette d'origine, inchangée --- */
+            --bleu-marine: rgb(11, 11, 70);
+            --bleu-bloc: rgb(10, 10, 179);
+            --rouge: rgb(240, 5, 5);
+            --gris-clair: rgb(241, 238, 238);
+            --bleu-ergonomie: rgb(39, 93, 158);
+            --bleu-time: rgb(19, 19, 167);
+            --bleu-heure: rgb(45, 45, 214);
+            --bleu-header: rgb(240, 240, 248);
+            /* --- Tokens de forme / rythme, nouveaux --- */
+            --radius: 16px;
+            --ease: 220ms cubic-bezier(.22, .61, .36, 1);
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: #1b1b2e;
+        }
+        /* Empêche les sections ancrées de se retrouver collées en haut de l'écran quand on clique sur un lien du nav */
+        
+        #accueil,
+        #services,
+        #historique,
+        #equipe {
+            scroll-margin-top: 20px;
+        }
+        /* Met en évidence le lien du nav correspondant à la section visible */
+        
+        .navbar-escep .nav-link.active-link {
+            background-color: yellow;
+            color: black;
+            border-radius: 6px;
+        }
+        
+        h1,
+        h2,
+        h3,
+        .badge-titre,
+        .titre {
+            font-family: var(--font-display);
+            letter-spacing: -0.01em;
+        }
+        /* Focus clavier visible partout (accessibilité) */
+        
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--rouge);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+        
+        img,
+        video {
+            max-width: 100%;
+        }
+        /* --- En-tête --- */
+        
+        .entete {
+            background-color: var(--bleu-header);
+            border-bottom: 1px solid rgba(11, 11, 70, 0.08);
+        }
+        
+        .entete .logo {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+        }
+        
+        .titre {
+            color: var(--rouge);
+            font-weight: 700;
+            font-size: clamp(1.25rem, 1rem + 1.5vw, 1.9rem);
+            margin: 0;
+        }
+        /* --- Navigation --- */
+        
+        .navbar-escep {
+            background-color: var(--bleu-marine);
+        }
+        
+        .navbar-escep .nav-link {
+            color: whitesmoke;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            transition: background-color var(--ease), color var(--ease);
+        }
+        
+        .navbar-escep .nav-link:hover,
+        .navbar-escep .nav-link:focus {
+            background-color: yellow;
+            color: black;
+            border-radius: 6px;
+        }
+        /* --- Hero (fusion bandeau "ergonomie" + intro) --- */
+        
+        .hero {
+            background: linear-gradient(155deg, var(--bleu-ergonomie) 0%, var(--bleu-marine) 100%);
+            color: whitesmoke;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            /* signature discrète : un arc qui évoque une bulle de dialogue / une page ouverte */
+            content: "";
+            position: absolute;
+            right: -10%;
+            top: -20%;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.10), transparent 60%);
+            pointer-events: none;
+        }
+        
+        .hero .eyebrow {
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(245, 245, 245, 0.85);
+            border: 1px solid rgba(245, 245, 245, 0.35);
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 1.4rem + 3vw, 3.4rem);
+            font-weight: 600;
+            line-height: 1.05;
+            margin: 1rem 0 0.5rem;
+        }
+        
+        .hero h1 b {
+            color: yellow;
+            font-weight: 700;
+        }
+        
+        .hero .sub {
+            font-size: 1.05rem;
+            color: rgba(245, 245, 245, 0.85);
+            max-width: 46ch;
+        }
+        
+        .hero .lead-text {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-left: 3px solid var(--rouge);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            line-height: 1.75;
+            max-width: 62ch;
+        }
+        
+        .bold-rouge {
+            color: yellow;
+            font-weight: 600;
+        }
+        
+        .btn-hero {
+            background-color: var(--rouge);
+            color: whitesmoke;
+            font-weight: 600;
+            padding: 0.75rem 1.75rem;
+            border-radius: 999px;
+            border: none;
+            transition: transform var(--ease), box-shadow var(--ease);
+        }
+        
+        .btn-hero:hover {
+            color: whitesmoke;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(240, 5, 5, 0.35);
+        }
+        /* secction service */
+        
+        .services {
+            background-color: whitesmoke;
+        }
+        /* --- Cards Programme --- */
+        
+        .card-programme {
+            background-color: var(--bleu-bloc);
+            color: whitesmoke;
+            border-radius: var(--radius);
+            height: 100%;
+            padding: 1.75rem;
+            box-shadow: 0 8px 24px rgba(10, 10, 60, 0.18);
+            transition: transform var(--ease), box-shadow var(--ease);
+        }
+        
+        .card-programme:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(10, 10, 60, 0.28);
+        }
+        
+        .card-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.9rem;
+        }
+        
+        .card-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: whitesmoke;
+        }
+        
+        .badge-titre {
+            display: inline-block;
+            background-color: var(--rouge);
+            color: whitesmoke;
+            border-radius: 20px;
+            padding: 4px 15px;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        
+        .card-programme ul {
+            padding-left: 1.1rem;
+            margin-top: 1rem;
+        }
+        
+        .card-programme li {
+            margin-bottom: 0.4rem;
+        }
+        
+        .card-programme a.link-light {
+            text-decoration: none;
+            border-bottom: 1px solid rgba(245, 245, 245, 0.35);
+            transition: border-color var(--ease);
+        }
+        
+        .card-programme a.link-light:hover {
+            border-color: yellow;
+            color: yellow;
+        }
+        /* --- Texte encadré --- */
+        
+        .texte-encadre {
+            background-color: var(--gris-clair);
+            line-height: 1.85;
+            border-radius: var(--radius);
+        }
+        /* ----- section Historique -----*/
+        
+        .Historique {
+            background-color: white;
+        }
+        
+        .block_apperçu {
+            display: flex;
+            text-align: center;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* 4 colonnes égales */
+            gap: 20px;
+            /* Espace entre les cartes */
+        }
+        
+        .article-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Aligne le bouton et la date en bas */
+        }
+        /* -----image des cards ------*/
+        
+        .article-card .image-container {
+            overflow: hidden;
+        }
+        
+        .card_image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 400ms ease;
+        }
+        /* Zoom de l'image au survol de l'article, demandé explicitement */
+        
+        .article-card:hover .card_image {
+            transform: scale(1.08);
+        }
+        
+        .galerie_video {
+            background: radial-gradient(circle at 80% 20%, #e7ebeb 0%, #dfdedee3 60%);
+        }
+        
+        .image-container {
+            min-height: 220px;
+        }
+        
+        .image_place {
+            height: 100%;
+            width: 100%;
+            background-image: url("background_imagé_1.jfif");
+            background-size: cover;
+            background-position: center;
+            background-color: #12058abd;
+        }
+        /* --- Carrousel équipe (12 membres, défilement auto en boucle) --- */
+        
+        .team-carousel {
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+        }
+        
+        .team-track {
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+            padding: 0.5rem 0 1.5rem;
+            animation: team-scroll 36s linear infinite;
+        }
+        /* Pause au survol : plus facile à regarder / à lire un nom */
+        
+        .team-carousel:hover .team-track {
+            animation-play-state: paused;
+        }
+        
+        .team-slot {
+            flex: 0 0 160px;
+            text-align: center;
+        }
+        
+        .team-photo {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 0.75rem;
+            border-radius: 50%;
+            background-color: var(--bleu-bloc);
+            background-size: cover;
+            background-position: center;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+        }
+        
+        .team-slot h4 {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+        
+        .team-slot span {
+            font-size: 0.8rem;
+            color: #555;
+        }
+        
+        @keyframes team-scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                /* La piste contient les 12 membres en double : -50% ramène  exactement au début visuel, la boucle est invisible. */
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .team-track {
+                animation: none;
+            }
+        }
+        /* --- Bandeau time table --- */
+        
+        .time-bandeau {
+            background-color: var(--bleu-time);
+            color: whitesmoke;
+            border-radius: var(--radius);
+        }
+        
+        .time-bandeau h2 {
+            font-weight: 600;
+            font-size: 1.4rem;
+        }
+        /* --- Tableau (desktop) --- */
+        
+        .table-escep th {
+            background-color: darkblue;
+            color: white;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+        
+        .table-escep td {
+            background-color: rgb(235, 235, 245);
+        }
+        
+        .heure-cell {
+            background-color: var(--bleu-heure);
+            color: rgb(240, 238, 238);
+        }
+        /* --- Cards horaires (mobile) --- */
+        
+        .jour-card {
+            background-color: whitesmoke;
+            border: 1px solid rgba(11, 11, 70, 0.1);
+            border-radius: var(--radius);
+            padding: 1.1rem 1.25rem;
+        }
+        
+        .jour-card h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: var(--bleu-marine);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .jour-card .heure-badge {
+            background-color: var(--bleu-heure);
+            color: whitesmoke;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 999px;
+            padding: 2px 10px;
+        }
+        
+        .jour-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .jour-card li {
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed rgba(11, 11, 70, 0.12);
+        }
+        
+        .jour-card li:last-child {
+            border-bottom: none;
+        }
+        /* --- Styles Généraux de la Section --- */
+        
+        .contact-section {
+            background-color: #f4f6f9;
+            /* Fond gris très clair comme PayPal */
+            padding: 60px 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        
+        .contact-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        /* --- Style du Bloc Principal (Haut) --- */
+        
+        .recommended-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #e6f0ff;
+            color: #12058abd;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .icon-main {
+            font-size: 40px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .recommended-box h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .recommended-box p {
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto 25px auto;
+            line-height: 1.5;
+        }
+        /* --- Bouton CTA Principal --- */
+        
+        .btn-primary {
+            display: inline-block;
+            background-color: #12058abd;
+            /* Couleur principale du club */
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #12058abd;
+            transform: translateY(-2px);
+        }
+        /* --- Titre Séparateur --- */
+        
+        .separator-title {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        /* --- Grille des Options Secondaires (Bas) --- */
+        
+        .other-methods-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .method-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s ease;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .icon-sub {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .method-card h5 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .method-card p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            min-height: 36px;
+            /* Aligne la hauteur des textes */
+        }
+        /* --- Liens d'action secondaires --- */
+        
+        .btn-link {
+            color: #12058abd;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+        /* --- Responsive (Téléphones) --- */
+        
+        @media (max-width: 768px) {
+            .other-methods-grid {
+                grid-template-columns: 1fr;
+                /* Les 3 colonnes passent l'une sous l'autre */
+            }
+            .method-card p {
+                min-height: auto;
+            }
+        }
+        /* --- Footer --- */
+        
+        footer.site-footer {
+            background-color: var(--bleu-marine);
+            color: rgba(245, 245, 245, 0.85);
+        }
+        
+        footer.site-footer a {
+            color: whitesmoke;
+            text-decoration: none;
+            transition: color var(--ease);
+        }
+        
+        footer.site-footer a:hover {
+            color: yellow;
+        }
+        
+        footer.site-footer h5 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: whitesmoke;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(245, 245, 245, 0.15);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- =====================================================        EN-TETE   ====================================================== -->
+    <header class="entete d-flex justify-content-between align-items-center px-3 py-2"> <img class="logo" src="en_club_logo.png" alt="Logo ESCEP English Club" loading="lazy">
+        <h1 class="titre">ESCEP ENGLISH CLUB</h1>
+    </header>
+    <!-- =====================================================        NAVIGATION   ====================================================== -->
+    <nav class="navbar navbar-expand-md navbar-escep">
+        <div class="container-fluid justify-content-center"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-label="Ouvrir le menu">         <span class="navbar-toggler-icon"></span>       </button>
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav mx-auto text-center gap-2">
+                    <li class="nav-item"><a class="nav-link" href="#accueil" data-nav-target="accueil">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services" data-nav-target="services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#historique" data-nav-target="historique">Historique</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#equipe" data-nav-target="equipe">Équipe</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-nav-target="contact ">Nous Contacter</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <!-- =====================================================         Section HERO   ====================================================== -->
+        <section class="hero " id="accueil">
+            <div class="container py-5 py-md-5 "> <span class="eyebrow ">Programme exclusif · ESCEP NIGER</span>
+                <h1><b>L'ergonomie de l'anglais</b></h1>
+                <p class="sub ">Gestion scientifique &amp; culturelle de l'anglais</p>
+                <p class="lead-text mt-4 "> Vous avez toujours rêvé de booster votre niveau pratique en Anglais, de devenir un pro en la matière, de communiquer aisément comme le ferait un Américain natif ou un British ? <b class="bold-rouge ">ESCEP ENGLISH CLUB</b> vous ouvre ses
+                    portes : le lieu pour apprendre l'Anglais, devenue incontournable en cette ère où une grande partie des connaissances et découvertes scientifiques se trouvent écrites dans cette langue. Plusieurs programmes sont pensés pour accroître
+                    votre maîtrise de l'Anglais — et <b class="bold-rouge ">c'est totalement gratuit</b>. </p> <a href="Contacter.html " class="btn btn-hero mt-4 ">Rejoindre le club — c'est gratuit</a> </div>
+        </section>
+        <!-- =====================================================          Section services     ====================================================== -->
+        <section class="services " id="services">
+            <!-- =====================================================             PROGRAMMES (Block1 à Block4)         ====================================================== -->
+            <div class="container my-5 ">
+                <div class="row g-4 ">
+                    <!-- Block1 : Apprendre l'anglais comme un pro -->
+                    <div class="col-12 col-md-6 ">
+                        <div class="card-programme ">
+                            <div class="card-icon "> <svg viewBox="0 0 24 24 " fill="none " stroke-width="1.8 " stroke-linecap="round " stroke-linejoin="round "><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20 "/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5
+                            2.5 0 0 1 6.5 2z "/></svg> </div>
+                            <h2 class="badge-titre ">Apprendre l'Anglais comme un pro</h2>
+                            <ul>
+                                <li> Partage de documents, romans &amp; vidéos éducatives </li>
+                                <li>Daily Motivation </li>
+                                <li>Reading Session </li>
+                                <li>Débat en live (sur TikTok) &amp; en présentiel </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Block2 : Poursuite d'apprentissage à Accra -->
+                    <div class="col-12 col-md-6 ">
+                        <div class="card-programme ">
+                            <div class="card-icon "> <svg viewBox="0 0 24 24 " fill="none " stroke-width="1.8 " stroke-linecap="round " stroke-linejoin="round "><path d="M2 16.5 22 6l-3 15-6.5-5-4 3-1-6.5z "/></svg> </div>
+                            <h2 class="badge-titre ">Poursuite d'apprentissage à Accra</h2>
+                            <h3 class="fs-6 mt-3 fw-normal ">Nous vous :</h3>
+                            <ul>
+                                <li>Facilitons vos inscriptions à l'institut TAS</li>
+                                <li>Accompagnons dans toutes les démarches pratiques (hébergement, voyage, informations pour les choix)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Block3 : Formation en ligne -->
+                    <div class="col-12 col-md-6 ">
+                        <div class="card-programme text-center ">
+                            <div class="card-icon mx-auto "> <svg viewBox="0 0 24 24 " fill="none " stroke-width="1.8 " stroke-linecap="round " stroke-linejoin="round "><rect x="2 " y="4 " width="20 " height="13 " rx="2 "/><path d="M8 21h8M12 17v4 "/></svg> </div>
+                            <h2 class="badge-titre ">Formation en ligne</h2>
+                            <p class="mt-3 mb-0 ">Formation en ligne sur WhatsApp avec un groupe dédié</p>
+                        </div>
+                    </div>
+                    <!-- Block4 : Formation en présentiel -->
+                    <div class="col-12 col-md-6 ">
+                        <div class="card-programme text-center ">
+                            <div class="card-icon mx-auto "> <svg viewBox="0 0 24 24 " fill="none " stroke-width="1.8 " stroke-linecap="round " stroke-linejoin="round "><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2 "/><circle cx="10 " cy="7
+                                        " r="4 "/><path d="M21 21v-2a4 4 0 0 0-3-3.87 "/><path d="M16 3.13a4 4 0 0 1 0 7.75 "/></svg> </div>
+                            <h2 class="badge-titre ">Formation en présentiel</h2>
+                            <p class="mt-3 mb-0 ">Formation en présentiel à Niamey, ESCEP NIGER</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================          TEXTE DE CONCLUSION     ====================================================== -->
+        <div class="container my-5 ">
+            <p class="texte-encadre p-4 text-center mb-0 "> <b class="bold-rouge " style="color: var(--rouge); ">ESCEP ENGLISH CLUB</b> propose aussi des programmes de <b>leadership</b>, de <b>développement personnel</b> et de <b>prise de parole en public</b>. </p>
+        </div>
+        <!-- =====================================================  Section Historique"======================================================- -->
+        <section class="Historique py-5" id="historique">
+            <!--Titre de la section -->
+            <div class="container text-center mb-5">
+                <h2>Historique de nos activités</h2>
+            </div>
+
+            <!-- Grille Bootstrap de cartes -->
+            <div class="container">
+                <div class="row g-4 align-items-stretch">
+
+                    <!-- Article 1 -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <article class="card h-100 shadow-sm border-0">
+                            <div class="position-relative overflow-hidden" style="height: 200px;">
+                                <img class="card-img-top w-100 h-100 object-fit-cover" src="impecable.png" alt="Activité 1">
+
+                                <!-- <span class="badge bg-primary position-absolute top-0 start-0 m-2">Catégorie</span> -->
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="card-title h5">Prise de parole du vice président </h3>
+                                <p class="card-text text-muted flex-grow-1">Le vice-president, reconnu pour son aisance en communication en anglais,explique aux mebres la manière de se présenter correctement en tant qu'etudiznt. Son intervention vise à renforcer la confiance et la clarté des prise
+                                    de parole.
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <small class="text-secondary">28 Mars 2026</small>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Article 2 -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <article class="card h-100 shadow-sm border-0">
+                            <div class="position-relative overflow-hidden" style="height: 200px;">
+                                <img class="card-img-top w-100 h-100 object-fit-cover" src="club_img2.jpeg" alt="Activité 2">
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="card-title h5">Photo de famille de fin de séance</h3>
+                                <p class="card-text text-muted flex-grow-1">Chaque séaance s'achève avec une photo de famille, symbole de notre esprit d'equipe, de convivialité et de notre engagement commun.</p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <small class="text-secondary">4 Avril 2026</small>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Article 3 -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <article class="card h-100 shadow-sm border-0">
+
+                            <div class="position-relative overflow-hidden" style="height: 200px;">
+                                <img class="card-img-top w-100 h-100 object-fit-cover" src="club_img3.jpeg" alt="Activité 3">
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="card-title h5">Remise de prix aux vainqueurs</h3>
+                                <p class="card-text text-muted flex-grow-1">Les meilleurs prestations en débat sont récompensés afin de valoriser l'effort, la maîtrise des expressions anglaises et l'esprit de compétition.</p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <small class="text-secondary">4 Avril 2026</small>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Article 4 -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <article class="card h-100 shadow-sm border-0">
+                            <div class="position-relative overflow-hidden" style="height: 200px;">
+                                <img class="card-img-top w-100 h-100 object-fit-cover card-img-hover" src="club_img4.jpeg" alt="Activité 4">
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="card-title h5">vainqueurs de la session de débat</h3>
+                                <p class="card-text text-muted flex-grow-1"> Les équipes se sont afrontées autour du théme
+                                    << <strong>Computers should replace teachers
+                                        </strong> >>, mettant en avant leurs esprit critique et leur aisance en anglais.</p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <small class="text-secondary">25 Avril 2025</small>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="galerie_video">
+            <div class=" container-fluid py-5">
+                <!-- Couleur orange de fond -->
+                <div class="container text-white text-center mb-5">
+                    <p class="mb-1 text-uppercase fw-semibold" style="color: rgb(25, 25, 119);">Des vidéos qui marquent, decouvrez l'Anglais à chaque fois sous un nouveau angle.</p>
+                    <h2 class="fw-bold display-6" style="color: rgb(7, 7, 80);">Extrait des cours </h2>
+                    <div class="mt-3"> <i class="bi bi-chevron-down fs-4"></i>
+                        <!-- Icône flèche vers le bas -->
+                    </div>
+                </div>
+                <!-- Grille de 3 colonnes sur PC, 2 sur tablette, 1 sur mobile -->
+                <!-- Vidéos TikTok (verticales) : -->
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+                        <!-- Bloc Vidéo 1 : -->
+                        <div class="col d-flex justify-content-center">
+                            <div class="card h-100 border-4 border-white rounded-4 overflow-hidden bg-dark text-white d-flex align-items-center justify-content-center p-2">
+                                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@ibrahimescepp/video/7602710651747863831" data-video-id="7602710651747863831" style="max-width: 605px;min-width: 325px;">
+                                    <section> <a target="_blank" title="@ibrahimescepp" href="https://www.tiktok.com/@ibrahimescepp?refer=embed">@ibrahimescepp</a> Hi and Hello Rejoins le Club d’Anglais ESCEP 🇳🇪 💬 Clique sur le lien 🔗 Groupe WhatsApp : chat.whatsapp.com&#47;Bxkh1DiSzXmIzhWXWY6I5i
+                                        <a title="englishclub" target="_blank" href="https://www.tiktok.com/tag/englishclub?refer=embed">#EnglishClub</a> <a title="learnenglish" target="_blank" href="https://www.tiktok.com/tag/learnenglish?refer=embed">#LearnEnglish</a>                                        <a title="englishspeaking" target="_blank" href="https://www.tiktok.com/tag/englishspeaking?refer=embed">#EnglishSpeaking</a> <a title="speakenglish" target="_blank" href="https://www.tiktok.com/tag/speakenglish?refer=embed">#SpeakEnglish</a>                                        <a title="englishpractice" target="_blank" href="https://www.tiktok.com/tag/englishpractice?refer=embed">#EnglishPractice</a> <a target="_blank" title="♬ son original - Ibrahim@ESCEP" href="https://www.tiktok.com/music/son-original-7602710684820605719?refer=embed">♬ son original - Ibrahim@ESCEP</a>                                        </section>
+                                </blockquote>
+                                <script async src="https://www.tiktok.com/embed.js"></script>
+                            </div>
+                        </div>
+                        <!-- Bloc Vidéo 2 -->
+                        <div class="col d-flex justify-content-center">
+                            <div class="card h-100 border-4 border-white rounded-4 overflow-hidden bg-dark text-white d-flex align-items-center justify-content-center p-2">
+                                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@ibrahimescepp/video/7655382860790058273" data-video-id="7655382860790058273" style="max-width: 605px;min-width: 325px;">
+                                    <section> <a target="_blank" title="@ibrahimescepp" href="https://www.tiktok.com/@ibrahimescepp?refer=embed">@ibrahimescepp</a>
+                                        <p>ESCEP English and Leadership Club 🇳🇪 fyp goviral ESCEPNiger LeadershipClub Speakenglish</p> <a target="_blank" title="♬ son original - Ibrahim@ESCEP" href="https://www.tiktok.com/music/son-original-7655382874887097121?refer=embed">♬ son original - Ibrahim@ESCEP</a>                                        </section>
+                                </blockquote>
+                                <script async src="https://www.tiktok.com/embed.js"></script>
+                                <script async src="https://www.tiktok.com/embed.js"></script>
+                            </div>
+                        </div>
+                        <!-- Bloc Vidéo 3 -->
+                        <div class="col d-flex justify-content-center">
+                            <div class="card h-100 border-4 border-white rounded-4 overflow-hidden bg-dark text-white d-flex align-items-center justify-content-center p-2">
+                                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@ibrahimescepp/video/7657802578595450144" data-video-id="7657802578595450144" style="max-width: 605px;min-width: 325px;">
+                                    <section> <a target="_blank" title="@ibrahimescepp" href="https://www.tiktok.com/@ibrahimescepp?refer=embed">@ibrahimescepp</a> <a title="mathenglish" target="_blank" href="https://www.tiktok.com/tag/mathenglish?refer=embed">#MathEnglish</a>                                        <a title="learnenglish" target="_blank" href="https://www.tiktok.com/tag/learnenglish?refer=embed">#LearnEnglish</a> <a title="englishtips" target="_blank" href="https://www.tiktok.com/tag/englishtips?refer=embed">#EnglishTips</a>                                        <a title="studytok" target="_blank" href="https://www.tiktok.com/tag/studytok?refer=embed">#StudyTok</a> <a title="education" target="_blank" href="https://www.tiktok.com/tag/education?refer=embed">#Education</a>                                        <a target="_blank" title="♬ son original - Ibrahim@ESCEP" href="https://www.tiktok.com/music/son-original-7657802640218131233?refer=embed">♬ son original - Ibrahim@ESCEP</a> </section>
+                                </blockquote>
+                                <script async src="https://www.tiktok.com/embed.js"></script>
+                            </div>
+                        </div>
+                        <!-- Bloc Vidéo 4 -->
+                        <div class="col d-flex justify-content-center">
+                            <div class="card h-100 border-4 border-white rounded-4 overflow-hidden bg-dark text-white d-flex align-items-center justify-content-center p-2">
+                                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@ibrahimescepp/video/7659121221904207137" data-video-id="7659121221904207137" style="max-width: 605px;min-width: 325px;">
+                                    <section> <a target="_blank" title="@ibrahimescepp" href="https://www.tiktok.com/@ibrahimescepp?refer=embed">@ibrahimescepp</a> <a title="mathenglish" target="_blank" href="https://www.tiktok.com/tag/mathenglish?refer=embed">#MathEnglish</a>                                        <a title="learnenglish" target="_blank" href="https://www.tiktok.com/tag/learnenglish?refer=embed">#LearnEnglish</a> <a title="englishtips" target="_blank" href="https://www.tiktok.com/tag/englishtips?refer=embed">#EnglishTips</a>                                        <a title="studytok" target="_blank" href="https://www.tiktok.com/tag/studytok?refer=embed">#StudyTok</a> <a title="education" target="_blank" href="https://www.tiktok.com/tag/education?refer=embed">#Education</a>                                        <a target="_blank" title="♬ son original - Ibrahim@ESCEP" href="https://www.tiktok.com/music/son-original-7659121248328305440?refer=embed">♬ son original - Ibrahim@ESCEP</a> </section>
+                                </blockquote>
+                                <script async src="https://www.tiktok.com/embed.js"></script>
+                            </div>
+                        </div>
+                        <!-- Bloc Vidéo 5 -->
+                        <div class="col d-flex justify-content-center">
+                            <div class="card h-100 border-4 border-white rounded-4 overflow-hidden bg-dark text-white d-flex align-items-center justify-content-center p-2">
+                                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@ibrahimescepp/video/7655821338795347232" data-video-id="7655821338795347232" style="max-width: 605px;min-width: 325px;">
+                                    <section> <a target="_blank" title="@ibrahimescepp" href="https://www.tiktok.com/@ibrahimescepp?refer=embed">@ibrahimescepp</a>
+                                        <p>THE GAME 🔥🔥🔥🔥 ESCEP English and Leadership Club 🇳🇪 fyp goviral ESCEPNiger LeadershipClub Speakenglish</p> <a target="_blank" title="♬ son original - Ibrahim@ESCEP" href="https://www.tiktok.com/music/son-original-7655821357900729120?refer=embed">♬ son original - Ibrahim@ESCEP</a>                                        </section>
+                                </blockquote>
+                                <script async src="https://www.tiktok.com/embed.js"></script>
+                            </div>
+                        </div>
+                        <!-- Bloc Vidéo 6 -->
+                        <div class="col d-flex justify-content-center">
+                            <div class="card h-100 border-4 border-white rounded-4 overflow-hidden bg-dark text-white d-flex align-items-center justify-content-center p-2">
+                                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@ibrahimescepp/video/7655581264182906145" data-video-id="7655581264182906145" style="max-width: 605px;min-width: 325px;">
+                                    <section> <a target="_blank" title="@ibrahimescepp" href="https://www.tiktok.com/@ibrahimescepp?refer=embed">@ibrahimescepp</a> <a title="mathenglish" target="_blank" href="https://www.tiktok.com/tag/mathenglish?refer=embed">#MathEnglish</a>                                        <a title="learnenglish" target="_blank" href="https://www.tiktok.com/tag/learnenglish?refer=embed">#LearnEnglish</a> <a title="englishtips" target="_blank" href="https://www.tiktok.com/tag/englishtips?refer=embed">#EnglishTips</a>                                        <a title="studytok" target="_blank" href="https://www.tiktok.com/tag/studytok?refer=embed">#StudyTok</a> <a title="education" target="_blank" href="https://www.tiktok.com/tag/education?refer=embed">#Education</a>                                        <a target="_blank" title="♬ son original - Ibrahim@ESCEP" href="https://www.tiktok.com/music/son-original-7655581295665580832?refer=embed">♬ son original - Ibrahim@ESCEP</a> </section>
+                                </blockquote>
+                                <script async src="https://www.tiktok.com/embed.js"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================================VéIDEO======== ==============================================-->
+        <div class="container my-5">
+
+            <!-- =====================================================        section equipe & expertise   ====================================================== -->
+            <section class="equipe-expertise" id="equipe">
+                <div class="container text-center mb-4">
+                    <h2> The impecables</h2>
+                    <p class="text-muted mb-0">Les visages derrière ESCEP English Club — 12 membres, une seule mission.</p>
+                </div>
+                <!-- Défilement automatique en boucle : la piste contient les 12                  membres, puis les 12 mêmes membres une seconde fois, et                  l'animation translate exactement de -50% pour boucler sans                  coupure visible. Remplace membre1.jpg ... membre12.jpg par                  les vraies photos. -->
+                <div class="team-carousel">
+                    <div class="team-track" id="teamTrack">
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_6.jpeg');"></div>
+                            <h4>Ibrahim@ESCEP</h4> <span>Garien de la vison(president du club) </span> </div>
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_2.jpeg');"></div>
+                            <h4>Shooter boy</h4> <span>Promoteur du club</span> </div>
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_3.jpeg');"></div>
+                            <h4>Boubacar Halidou Mohamed Amine</h4> <span>Responsable des jeux</span> </div>
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_4.jpeg');"></div>
+                            <h4>Abdoul Hafiz </h4> <span>Vice president du club</span> </div>
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_1_1.png');"></div>
+                            <h4>Amos</h4> <span>SG hargé des débats</span> </div>
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_n.jpeg');"></div>
+                            <h4>Aboubacar Sidikou</h4> <span>Time-keeper</span> </div>
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_7.jpeg');"></div>
+                            <h4>Mohamed Laouali Salaou</h4> <span>Rapporteur du club</span> </div>
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_8.jpeg');"></div>
+                            <h4>Salim</h4> <span>Responsable multilmedia</span> </div>
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_9.jpeg');"></div>
+                            <h4>Adamou Moussa Mohamed</h4> <span>responsable logistique &map;  salle</span> </div>
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_10.jpeg');"></div>
+                            <h4>Nana-Aïchatou Ibrahim</h4> <span>Tresorière</span> </div>
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_11.jpeg');"></div>
+                            <h4>M'baye Djibril</h4> <span> Chargé des activités culturelles et partenariats</span> </div>
+                        <div class="team-slot">
+                            <div class="team-photo" style="background-image: url('membre_12.jpeg');"></div>
+                            <h4>Hindatou</h4> <span>Responsable culture</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre1.jpg');"></div>
+                            <h4>Nom Prénom 1</h4> <span>Rôle / expertise</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre2.jpg');"></div>
+                            <h4>Nom Prénom 2</h4> <span>Rôle / expertise</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre3.jpg');"></div>
+                            <h4>Nom Prénom 3</h4> <span>Rôle / expertise</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre4.jpg');"></div>
+                            <h4>Nom Prénom 4</h4> <span>Rôle / expertise</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre5.jpg');"></div>
+                            <h4>Nom Prénom 5</h4> <span>Rôle / expertise</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre6.jpg');"></div>
+                            <h4>Nom Prénom 6</h4> <span>Rôle / expertise</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre7.jpg');"></div>
+                            <h4>Nom Prénom 7</h4> <span>Rôle / expertise</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre8.jpg');"></div>
+                            <h4>Nom Prénom 8</h4> <span>Rôle / expertise</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre9.jpg');"></div>
+                            <h4>Nom Prénom 9</h4> <span>Rôle / expertise</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre10.jpg');"></div>
+                            <h4>Nom Prénom 10</h4> <span>Rôle / expertise</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre11.jpg');"></div>
+                            <h4>Nom Prénom 11</h4> <span>Rôle / expertise</span> </div>
+                        <div class="team-slot" aria-hidden="true">
+                            <div class="team-photo" style="background-image: url('membre12.jpg');"></div>
+                            <h4>Nom Prénom 12</h4> <span>Rôle / expertise</span> </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="Agenda">
+
+                <!-- =====================================================          TIME TABLE     ====================================================== -->
+                <div class="container my-5">
+                    <div class="time-bandeau text-center py-3 mb-4">
+                        <h2 class="m-0">ESCEP ENGLISH-CLUB TIME TABLE</h2>
+                    </div>
+                    <h3 class="text-center mb-4 fs-5 fw-normal">Continuous cycle on WhatsApp</h3>
+                    <!-- Version mobile : cards par jour  -->
+                    <div class="d-md-none">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="jour-card">
+                                    <h4>Monday <span class="heure-badge">20h</span></h4>
+                                    <ul>
+                                        <li>Reading</li>
+                                        <li>Debate</li>
+                                        <li>Common Mistakes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="jour-card">
+                                    <h4>Wednesday <span class="heure-badge">20h</span></h4>
+                                    <ul>
+                                        <li>Reading</li>
+                                        <li>Debate</li>
+                                        <li>Common Mistakes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="jour-card">
+                                    <h4>Saturday <span class="heure-badge">20h</span></h4>
+                                    <ul>
+                                        <li>Reading</li>
+                                        <li>Debate-live</li>
+                                        <li>Common Mistakes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-center text-muted mt-3 mb-0 small"> Thèmes de la semaine : Read &amp; Load Week · Debate Champion Week · Mistakes Breakers Week </p>
+                    </div>
+                    <!-- Version desktop : tableau complet -->
+                    <div class="table-responsive d-none d-md-block">
+                        <table class="table table-bordered text-center table-escep align-middle">
+                            <thead>
+                                <tr>
+                                    <th>TIME</th>
+                                    <th>MONDAY</th>
+                                    <th>WEDNESDAY</th>
+                                    <th>SATURDAY</th>
+                                    <th>WEEK NAME</th>
+                                </tr>
+                            </thead>
+
+                            <body>
+                                <tr>
+                                    <td class="heure-cell"><b>20h</b></td>
+                                    <td><b>Reading</b></td>
+                                    <td><b>Reading</b></td>
+                                    <td><b>Reading</b></td>
+                                    <td><b>Read &amp; Load Week</b></td>
+                                </tr>
+                                <tr>
+                                    <td class="heure-cell"><b>20h</b></td>
+                                    <td><b>Debate</b></td>
+                                    <td><b>Debate</b></td>
+                                    <td><b>Debate-live</b></td>
+                                    <td><b>Debate Champion Week</b></td>
+                                </tr>
+                                <tr>
+                                    <td class="heure-cell"><b>20h</b></td>
+                                    <td><b>Common Mistakes</b></td>
+                                    <td><b>Common Mistakes</b></td>
+                                    <td><b>Common Mistakes</b></td>
+                                    <td><b>Mistakes Breakers Week</b></td>
+                                </tr>
+                            </body>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact-section" id="contact">
+                <div class="contact-container">
+
+                    <!-- Partie Haute : Option Recommandée (CTA Principal) -->
+                    <div class="recommended-box">
+                        <div class="icon-main">⚡</div>
+                        <h3>Rejoindre le club</h3>
+                        <p>Le moyen le plus rapide pour vous inscrire ou réserver votre première séance d'essai gratuite avec nous.</p>
+                        <a href="#inscription" class="btn btn-primary">Devenir membre en 2 min</a>
+                    </div>
+
+                    <!-- Séparateur discret -->
+                    <h4 class="separator-title">Autres méthodes de contact</h4>
+
+                    <!-- Partie Basse : Les 3 Colonnes de contact -->
+                    <div class="other-methods-grid">
+
+                        <!-- Colonne 1 -->
+                        <div class="method-card">
+                            <div class="icon-sub">✉️</div>
+                            <h5>Service de renseignement</h5>
+                            <p>Des informations sur le fonctionnement du club ?</p>
+                            <div> <a href="#" class=" CTA whatsapp-btn">Nous écrire sur whatsapp</a> </div>
+                        </div>
+
+                        <!-- Colonne 2 -->
+                        <div class="method-card">
+                            <div class="icon-sub">📅</div>
+                            <h5>Planning & Matchs</h5>
+                            <p>Consultez le calendrier des entraînements et des événements.</p>
+                            <a href="#agenda" class="btn-link">Voir l'agenda du club</a>
+                        </div>
+
+                        <!-- Colonne 3 -->
+                        <div class="method-card">
+                            <div class="icon-sub">📞</div>
+                            <h5>Contact Direct</h5>
+                            <p>Besoin de nous parler de vive voix ? Appelez-nous.</p>
+                            <!--  Methode anti bots -->
+                            <span id="mon_contact"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+
+    </main>
+    <!-- =====================================================        FOOTER   ====================================================== -->
+    <footer class=" site-footer pt-5 pb-3 mt-5">
+        <div class="container">
+            <div class="social-footer">
+                <a href="URL_VOTRE_PAGE"><i class="fab fa-facebook-f"></i></a>
+                <a href="URL_VOTRE_PAGE"><i class="fab fa-tiktok"></i></a>
+                <a href="URL_VOTRE_PAGE"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="row g-4">
+                <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 " style="display: flex; justify-content-space-around">
+                        <img class="logo " src="en_club_logo.png " alt="Logo ESCEP English Club " style=" width: 64px; height: 64px; object-fit: contain; " loading="lazy ">
+                        <h1 class="titre fs-4 " style="color: whitesmoke; font-size: 5rem">ESCEP ENGLISH CLUB</h1>
+                    </div>
+
+                    <p class="mt-2 mb-0 " style="max-width: 34ch; "> Le programme gratuit de l'ESCEP NIGER pour maîtriser l'anglais : reading, débats, formation en ligne et en présentiel. </p>
+
+                </div>
+                <div class="col-6 col-md-4 ">
+                    <h5>Navigation</h5>
+                    <ul class="list-unstyled mt-3 ">
+                        <li class="mb-2 "><a href="#accueil ">Accueil</a></li>
+                        <li class="mb-2 "><a href="#services ">Services</a></li>
+                        <li class="mb-2 "><a href="#historique ">Historique</a></li>
+                        <li class="mb-2 "><a href="#equipe ">Équipe</a></li>
+                        <li class="mb-2 "><a href="Contacter.html ">Nous Contacter</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 ">
+                    <h5>Le club</h5>
+                    <ul class="list-unstyled mt-3 ">
+                        <li class="mb-2 ">Niamey, ESCEP NIGER</li>
+                        <li class="mb-2 ">WhatsApp — groupe dédié</li>
+                        <li class="mb-2 ">Lun / Mer / Sam — 20h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center pt-3 mt-4 "> &copy; <span id="year "></span> ESCEP English Club. Tous droits réservés. </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js "></script>
+    <script async src="https://www.tiktok.com/embed.js "></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <!--
+    <script>
+        const parts = ["227", "81", "08", "39", "51"];
+        const numero = parts.join("");
+        const message = "Bonjour M. chargé des informations, j'aimerai en savoir plus sur le fonctionnement et le processus d'intégration du club.";
+        const lienComplet = "https://wa.me/22781083951?text=Bonjour%20M.%20charg%C3%A9%20de%20des%20informations%2Cj%27aimerai%20en%20avoir%20plus%20sur%20le%20fonctionnementù20et%20le%20processus%20d%27int%C3%A9gration%20du%20club";
+        documen.querySelectorAll('.whatsapp-btn').forEach(link => {
+            link.href = lienComplet;
+        });
+    </script> -->
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Découpage du numéro en 3 parties
+            const ind = "227";
+            const milieu = "98 43";
+            const fin = "15 29";
+
+            // Reliage des trois paries du numro
+            const numeroLisible = `${ind} ${milieu} ${fin}`;
+            const numeroLien = `+${ind}${milieu}${fin}`.replace(/\s/g, ''); // Supprime les espaces pour le lien tel:
+
+            // On injecte le lien cliquable contenant uniquement le numéro
+            const conteneur = document.getElementById('mon_contact');
+            conteneur.innerHTML = `<a href="tel:${numeroLien}">${numeroLisible}</a>`;
+        });
+    </script>
+
+</body>
+
+</html>
