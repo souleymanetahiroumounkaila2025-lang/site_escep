@@ -71,7 +71,7 @@
         
         a:focus-visible,
         button:focus-visible {
-            outline: 3px solid var(--rouge);
+            outline: 3px solid var(--bleu-marine);
             outline-offset: 3px;
             border-radius: 4px;
         }
@@ -94,7 +94,7 @@
         }
         
         .titre {
-            color: var(--rouge);
+            color: var( --bleu-marine);
             font-weight: 700;
             font-size: clamp(1.25rem, 1rem + 1.5vw, 1.9rem);
             margin: 0;
@@ -680,7 +680,7 @@
                 <p class="sub ">Gestion scientifique &amp; culturelle de l'anglais</p>
                 <p class="lead-text mt-4 "> Vous avez toujours rêvé de booster votre niveau pratique en Anglais, de devenir un pro en la matière, de communiquer aisément comme le ferait un Américain natif ou un British ? <b class="bold-rouge ">ESCEP ENGLISH CLUB</b> vous ouvre ses
                     portes : le lieu pour apprendre l'Anglais, devenue incontournable en cette ère où une grande partie des connaissances et découvertes scientifiques se trouvent écrites dans cette langue. Plusieurs programmes sont pensés pour accroître
-                    votre maîtrise de l'Anglais — et <b class="bold-rouge ">c'est totalement gratuit</b>. </p> <a href="Contacter.html " class="btn btn-hero mt-4 ">Rejoindre le club — c'est gratuit</a> </div>
+                    votre maîtrise de l'Anglais — et <b class="bold-rouge ">c'est totalement gratuit</b>. </p> <a href="#contact" data-nav-target="contact " class="btn btn-hero mt-4 ">Rejoindre le club — c'est gratuit</a> </div>
         </section>
         <!-- =====================================================          Section services     ====================================================== -->
         <section class="services " id="services">
@@ -759,7 +759,7 @@
                             </div>
                             <div class="card-body d-flex flex-column">
                                 <h3 class="card-title h5">Prise de parole du vice président </h3>
-                                <p class="card-text text-muted flex-grow-1">Le vice-president, reconnu pour son aisance en communication en anglais,explique aux mebres la manière de se présenter correctement en tant qu'etudiznt. Son intervention vise à renforcer la confiance et la clarté des prise
+                                <p class="card-text text-muted flex-grow-1">Le vice-president, reconnu pour son aisance en communication en anglais,explique aux mebres la manière de se présenter correctement en tant qu'etudient. Son intervention vise à renforcer la confiance et la clarté des prise
                                     de parole.
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
@@ -1096,7 +1096,7 @@
                             <div class="icon-sub">✉️</div>
                             <h5>Service de renseignement</h5>
                             <p>Des informations sur le fonctionnement du club ?</p>
-                            <div> <a href="#" class=" CTA whatsapp-btn">Nous écrire sur whatsapp</a> </div>
+                            <div> <a id="mon_contact_whtatsApp" class=" CTA whatsapp-btn">Nous écrire sur whatsapp</a> </div>
                         </div>
 
                         <!-- Colonne 2 -->
@@ -1149,7 +1149,7 @@
                         <li class="mb-2 "><a href="#services ">Services</a></li>
                         <li class="mb-2 "><a href="#historique ">Historique</a></li>
                         <li class="mb-2 "><a href="#equipe ">Équipe</a></li>
-                        <li class="mb-2 "><a href="Contacter.html ">Nous Contacter</a></li>
+                        <li class="mb-2 "><a href="#contact" data-nav-target="contact ">Nous Contacter</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 ">
@@ -1169,23 +1169,30 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
-    <!--
-    <script>
-        const parts = ["227", "81", "08", "39", "51"];
-        const numero = parts.join("");
-        const message = "Bonjour M. chargé des informations, j'aimerai en savoir plus sur le fonctionnement et le processus d'intégration du club.";
-        const lienComplet = "https://wa.me/22781083951?text=Bonjour%20M.%20charg%C3%A9%20de%20des%20informations%2Cj%27aimerai%20en%20avoir%20plus%20sur%20le%20fonctionnementù20et%20le%20processus%20d%27int%C3%A9gration%20du%20club";
-        documen.querySelectorAll('.whatsapp-btn').forEach(link => {
-            link.href = lienComplet;
-        });
-    </script> -->
 
+
+    <script>
+        /* ============ Liens WhatsApp ============ */
+        window.addEventListener('DOMContentLoaded', () => {
+            const indicatif = "227";
+            const p1 = "96",
+                p2 = "76",
+                p3 = "58",
+                p4 = "81";
+            const msgContact = "Bonjour M. le président de l'Escep English club,je voudrais intégrer le club, quelle est la procédure suivre?";
+            const lienContact = `https://wa.me/${indicatif}${p1}${p2}${p3}${p4}?text=${encodeURIComponent(msgContact)}`;
+            const ctaContact = document.getElementById('mon_contact_whtatsApp');
+            if (ctaContact) {
+                ctaContact.innerHTML = `<a href="${lienContact}" target="_blank" style="color:inherit;">Nous contacter</a>`
+            }
+        });
+    </script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             // Découpage du numéro en 3 parties
             const ind = "227";
-            const milieu = "98 43";
-            const fin = "15 29";
+            const milieu = "96 76";
+            const fin = "58 81";
 
             // Reliage des trois paries du numro
             const numeroLisible = `${ind} ${milieu} ${fin}`;
@@ -1197,6 +1204,7 @@
         });
     </script>
 
+
 </body>
 
-</html>
+</html
