@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="ESCEP ENGLISH CLUB — Programme gratuit d'apprentissage de l'anglais à Niamey : reading sessions, débats, formation en ligne et en présentiel.">
-    <title>ESCEP ENGLISH CLUB</title>
+    <title>ESCEP ENGLISH AND LEADERSHIP CLUB</title>
     <!-- Polices : Fraunces pour les titres (caractère éditorial), Poppins pour le corps -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600 ;9..144,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1225,8 +1225,8 @@
             <div class="row g-4">
                 <div class="col-12 col-md-4">
                     <div class="col-12 col-md-4 " style="display: flex; justify-content-space-around">
-                        <img class="logo " src="/en_club_logo.png" alt="Logo ESCEP English Club " style=" width: 64px; height: 64px; object-fit: contain; " loading="lazy ">
-                        <h1 class="titre fs-4 " style="color: whitesmoke; font-size: 5rem">ESCEP ENGLISH CLUB</h1>
+                        <img class="logo " src="en_club_logo.png" alt="Logo ESCEP English Club loading= lazy;  style=" width: 64px; height: 64px; object-fit: contain;>
+                        <h1 class=" titre fs-4 " style="color: whitesmoke; font-size: 5rem ">ESCEP ENGLISH CLUB</h1>
                     </div>
 
                     <p class="mt-2 mb-0 " style="max-width: 34ch; "> Le programme gratuit de l'ESCEP NIGER pour maîtriser l'anglais : reading, débats, formation en ligne et en présentiel. </p>
@@ -1239,7 +1239,7 @@
                         <li class="mb-2 "><a href="#services ">Services</a></li>
                         <li class="mb-2 "><a href="#historique ">Historique</a></li>
                         <li class="mb-2 "><a href="#equipe ">Équipe</a></li>
-                        <li class="mb-2 "><a href="#contact" data-nav-target="contact ">Nous Contacter</a></li>
+                        <li class="mb-2 "><a href="#contact " data-nav-target="contact ">Nous Contacter</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 ">
@@ -1253,9 +1253,9 @@
             </div>
             <div class="footer-bottom text-center pt-3 mt-4 "> &copy; <span id="year "></span> ESCEP English Club. Tous droits réservés. </div>
         </div>
-        <div class="footer-mini"> Réalisé par
-            <a href="https://agence-oryx.vercel.app/" target="_blank" rel="noopener">
-                <div class="logo"> <img style="height: 60px; width: 60px; border-radius: 30px; border: 2px solid #F1f1f1" src="/oryx_2_logo.png" alt="Logo Oryx"> </div> ORYX
+        <div class="footer-mini "> Réalisé par
+            <a href="https://agence-oryx.vercel.app/ " target="_blank " rel="noopener ">
+                <div class="logo "> <img style="height: 60px; width: 60px; border-radius: 30px; border: 2px solid #F1f1f1 " src="oryx_2_logo.png " alt="Logo Oryx "> </div> ORYX
             </a> — Niamey, Niger
 
         </div>
@@ -1270,21 +1270,21 @@
     <script>
         /* ============ Liens WhatsApp ============ */
         window.addEventListener('DOMContentLoaded', () => {
-            const indicatif = "227";
-            const p1 = "96",
-                p2 = "76",
-                p3 = "58",
-                p4 = "81";
-            const msgContact = "Bonjour M. le président de l'Escep English club, je voudrais intégrer le club, quelle est la procédure suivre?";
+            const indicatif = "227 ";
+            const p1 = "96 ",
+                p2 = "76 ",
+                p3 = "58 ",
+                p4 = "81 ";
+            const msgContact = "Bonjour M. le président de l 'Escep English club, je voudrais intégrer le club, quelle est la procédure suivre?";
             const lienContact = `https://wa.me/${indicatif}${p1}${p2}${p3}${p4}?text=${encodeURIComponent(msgContact)}`;
-            const ctaContact = document.getElementById('mon_contact_whtatsApp');
+            const ctaContact = document.getElementById('mon_contact_whtatsApp ');
             if (ctaContact) {
                 ctaContact.innerHTML = `<a href="${lienContact}" target="_blank" style="color:inherit;">Nous contacter</a>`
             }
         });
     </script>
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded ', () => {
             // Découpage du numéro en 3 parties
             const ind = "227";
             const milieu = "96 76";
@@ -1292,10 +1292,10 @@
 
             // Reliage des trois paries du numro
             const numeroLisible = `${ind} ${milieu} ${fin}`;
-            const numeroLien = `+${ind}${milieu}${fin}`.replace(/\s/g, ''); // Supprime les espaces pour le lien tel:
+            const numeroLien = `+${ind}${milieu}${fin}`.replace(/\s/g, ' '); // Supprime les espaces pour le lien tel:
 
             // On injecte le lien cliquable contenant uniquement le numéro
-            const conteneur = document.getElementById('mon_contact');
+            const conteneur = document.getElementById('mon_contact ');
             conteneur.innerHTML = `<a href="tel:${numeroLien}">${numeroLisible}</a>`;
         });
     </script>
